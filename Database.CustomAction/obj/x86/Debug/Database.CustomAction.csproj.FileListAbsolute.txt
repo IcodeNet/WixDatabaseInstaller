@@ -1,0 +1,11 @@
+C:\Development\GitHub\WixDatabaseInstaller\Database.CustomAction\bin\Debug\Database.CustomAction.dll
+C:\Development\GitHub\WixDatabaseInstaller\Database.CustomAction\bin\Debug\Database.CustomAction.CA.dll
+C:\Development\GitHub\WixDatabaseInstaller\Database.CustomAction\bin\Debug\Database.CustomAction.pdb
+C:\Development\GitHub\WixDatabaseInstaller\Database.CustomAction\bin\Debug\Microsoft.Deployment.WindowsInstaller.dll
+C:\Development\GitHub\WixDatabaseInstaller\Database.CustomAction\bin\Debug\Microsoft.Deployment.WindowsInstaller.xml
+C:\Development\GitHub\WixDatabaseInstaller\Database.CustomAction\obj\x86\Debug\Database.CustomAction.Properties.Resources.resources
+C:\Development\GitHub\WixDatabaseInstaller\Database.CustomAction\obj\x86\Debug\Database.CustomAction.UI.frmPaths.resources
+C:\Development\GitHub\WixDatabaseInstaller\Database.CustomAction\obj\x86\Debug\Database.CustomAction.csproj.GenerateResource.Cache
+C:\Development\GitHub\WixDatabaseInstaller\Database.CustomAction\obj\x86\Debug\Database.CustomAction.dll
+C:\Development\GitHub\WixDatabaseInstaller\Database.CustomAction\obj\x86\Debug\Database.CustomAction.pdb
+C:\Development\GitHub\WixDatabaseInstaller\Database.CustomAction\obj\x86\Debug\Database.CustomAction.csprojResolveAssemblyReference.cache

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+/* ==========================================================================
+Links:
+Resources: http://wix.codeplex.com/SourceControl/latest#src/ext/UIExtension/wixlib/
+========================================================================== */
+-->
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization" Codepage="1252">
+  <!--Features-->
+  <String Id="F_Wix.DBScript.Title" Overridable="yes">Relational Database</String>
+  <String Id="F_Wix.DBScript.Description" Overridable="yes">Relational Database</String>
+  <String Id="F_A01Wix.CreateDB.Title" Overridable="yes">Create and Initialise the Database</String>
+  <String Id="F_A01Wix.CreateDB.Description" Overridable="yes">It will create the Database and will run all the DDL SQL Scripts. It will add as well all Reference Data Needed in Association Tables. </String>
+  <String Id="F_D01Wix.SQLAgent.Title" Overridable="yes">Create SQL Agent Objects</String>
+  <String Id="F_D01Wix.SQLAgent.Description" Overridable="yes">Create SQL Agent Objects: jobs, operators, mail, etc.</String>
+
+  <!--Test Data-->
+  <String Id="F_Data.Title" Overridable="yes">Upload Test Data.</String>
+  <String Id="F_Data.Description" Overridable="yes">Select this to upload Test data into the database.</String>
+
+  <!--Backout Features-->
+  <String Id="F_BackoutScripts.Title" Overridable="yes">Will run Backout Scripts.</String>
+  <String Id="F_BackoutScripts.Description" Overridable="yes">Select this to Run Backout Scripts, or select individual Scripts to run.</String>
+ 
+  <!--Migrations-->
+  <String Id="F_Migrate.Title" Overridable="yes">Migrations</String>
+  <String Id="F_Migrate.Description" Overridable="yes">Please Select the version (Migration that you want to sync the database to).</String>
+
+  
+
+</WixLocalization>

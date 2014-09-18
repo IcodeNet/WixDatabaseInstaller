@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+
+/* ==========================================================================
+Links:
+  System folders: http://msdn.microsoft.com/en-us/library/aa372057.aspx
+  WIX UI Wizards: http://wix.tramontana.co.hu/tutorial/user-interface/ui-wizardry
+  Properties : http://msdn.microsoft.com/en-us/library/aa370905(VS.85).aspx#operating_system_properties
+  Execution sequence ORCA documentation can be found at: http://support.microsoft.com/kb/255905
+  Installing ServicePack : http://wix.tramontana.co.hu/tutorial/upgrades-and-modularization/patchwork
+  Mixing modules: http://wix.tramontana.co.hu/tutorial/upgrades-and-modularization/mergers
+  Parse character , for example when using logical operators : <![CDATA[IAgree <> "Yes"]]>: http://www.w3schools.com/xml/xml_cdata.asp
+  COM+: http://wix.tramontana.co.hu/tutorial/com-expression-syntax-miscellanea/com-applications
+========================================================================== */
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+	   xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+	   xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+
+  <?include $(var.ProjectDir)\Includes\Variables.wxi ?>
+
+  <Product Id="$(var.ProductId)" 
+	    	   Name="$(var.ProductName)" 
+		       Language="!(loc.LANG)" 
+		       Codepage="1252" 
+           Version="$(var.ProductVersion)" 
+		       Manufacturer="$(var.ManufacturerName)" 
+		       UpgradeCode="$(var.ProductUpgradeCode)">
+
+    <Package InstallerVersion="301" 
+				     Compressed="yes" 
+				     InstallScope="perMachine" 
+				     Description ="!(loc.ProductDescription)" 
+				     Keywords ="!(loc.KeyWords)" 
+				     SummaryCodepage ="1252" 
+				     Languages ="!(loc.LANG)" 
+				     Manufacturer="$(var.ManufacturerName)" 
+				     Comments ="!(loc.ProductComments)"/>
+
+  
+    <Property Id="DiskPrompt" Value="$(var.ProductName) - [1]" />
+    <Media Id="1" Cabinet="Media1.cab" EmbedCab="yes" DiskPrompt="Disk 1" VolumeLabel="Disk1"/>
+
+  
+    <Upgrade Id="$(var.ProductUpgradeCode)">
+      <UpgradeVersion Property="NEWER_VERSION_FOUND"
+                      OnlyDetect="yes"
+                      Minimum="$(var.ProductVersion)"
+                      IncludeMinimum="no"/>
+    </Upgrade>
+
+    
+
+    <!--Components-->
+    <FeatureGroupRef Id="FG_Main"/>
+
+    <!--Conditions-->
+    <PropertyRef Id="LaunchConditionsFile" />
+    
+    <!--Configuration-->
+    <PropertyRef Id="INSTALLLOCATION" />
+
+    
+    <UI Id="Custom_WixUI_Mondo">
+      <UIRef Id="WixUI3_Mondo" />
+      <UIRef Id="WixUI2_Common" />		
+      <Property Id="ErrorDialog" Value="UI2ErrorDlg" />
+	  </UI>
+
+    <AdminUISequence>
+      <Show Dialog="UI2FatalErrorDlg" OnExit="error" Overridable="yes" />
+      <Show Dialog="UI2UserExitDlg" OnExit="cancel" />
+      <Show Dialog="UI2ExitDlg" OnExit="success" />
+    </AdminUISequence>
+
+    <InstallUISequence>
+		  <Show Dialog="UI2FatalErrorDlg" OnExit="error" Overridable="yes" />
+		  <Show Dialog="UI2UserExitDlg" OnExit="cancel" />
+		  <Show Dialog="UI2ExitDlg" OnExit="success" />
+
+      <!--Default value to properties-->
+      <Custom Action='CA_SetProperty_DATABASE_SERVERNAME' Before='AppSearch'><![CDATA[DATABASE_SERVERNAME = ""]]></Custom>
+      <Custom Action='CA_SetProperty_DATABASE_NAME' After='CA_SetProperty_DATABASE_SERVERNAME'><![CDATA[DATABASE_NAME = ""]]></Custom>
+      
+      <Custom Action='CA_SaveCmdLineValue' Before='AppSearch' />
+      <Custom Action='CA_SetFromCmdLineValue' After='AppSearch'>CMDLINE_INSTALLLOCATION</Custom>
+      <Custom Action="CA_AlreadyUpdated" After="FindRelatedProducts">OLD_VERSION_FOUND</Custom>
+      <Custom Action="CA_NoDowngrade" After="FindRelatedProducts">NEWER_VERSION_FOUND</Custom>
+    </InstallUISequence>
+
+    <InstallExecuteSequence>
+      <Custom Action="CA_RememberInstallDir" After="InstallValidate" />
+      <Custom Action='CA_SaveCmdLineValue' Before='AppSearch' />
+      <Custom Action='CA_SetFromCmdLineValue' After='AppSearch'>CMDLINE_INSTALLLOCATION</Custom>
+      <Custom Action="CA_AlreadyUpdated" After="CA_SetFromCmdLineValue">OLD_VERSION_FOUND</Custom>
+      <Custom Action="CA_NoDowngrade" After="CA_AlreadyUpdated">NEWER_VERSION_FOUND</Custom>
+
+      <Custom Action="CA_DataBaseSwhowPathInstall" Before="InstallFinalize">
+        <![CDATA[DATABASE_EXECUTESCRIPTS = "1" AND (NOT INSTALLED OR UPGRADINGPRODUCTCODE OR NOT (REMOVE="ALL"))]]>
+      </Custom>
+      <!--<Custom Action='CA_DataBaseExecuteScripts' After="CA_DataBaseSwhowPathInstall">
+        <![CDATA[DATABASE_EXECUTESCRIPTS = "1" AND (NOT INSTALLED OR UPGRADINGPRODUCTCODE OR NOT (REMOVE="ALL"))]]>
+      </Custom>-->
+
+      <RemoveExistingProducts Before="InstallInitialize"/>
+    </InstallExecuteSequence>
+  </Product>
+</Wix>

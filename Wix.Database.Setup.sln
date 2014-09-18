@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.CustomAction", "Database.CustomAction\Database.CustomAction.csproj", "{530E8FA1-7428-4EB5-8B67-2B4AC7C6B709}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Database.Setup", "Database.Setup\Database.Setup.wixproj", "{A04F5EBF-CDB8-47BB-81F1-C2D30D3298EB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{530E8FA1-7428-4EB5-8B67-2B4AC7C6B709} = {530E8FA1-7428-4EB5-8B67-2B4AC7C6B709}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{530E8FA1-7428-4EB5-8B67-2B4AC7C6B709}.Debug|x86.ActiveCfg = Debug|x86
+		{530E8FA1-7428-4EB5-8B67-2B4AC7C6B709}.Debug|x86.Build.0 = Debug|x86
+		{530E8FA1-7428-4EB5-8B67-2B4AC7C6B709}.Release|x86.ActiveCfg = Release|x86
+		{530E8FA1-7428-4EB5-8B67-2B4AC7C6B709}.Release|x86.Build.0 = Release|x86
+		{A04F5EBF-CDB8-47BB-81F1-C2D30D3298EB}.Debug|x86.ActiveCfg = Debug|x86
+		{A04F5EBF-CDB8-47BB-81F1-C2D30D3298EB}.Debug|x86.Build.0 = Debug|x86
+		{A04F5EBF-CDB8-47BB-81F1-C2D30D3298EB}.Release|x86.ActiveCfg = Release|x86
+		{A04F5EBF-CDB8-47BB-81F1-C2D30D3298EB}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+
+/* ==========================================================================
+Links:
+  Variables: http://wix.tramontana.co.hu/tutorial/com-expression-syntax-miscellanea/formatted-strings
+========================================================================== */
+-->
+<Include>
+	<!-- Change Guids in each setup -->
+	<?define ProductId = "{EAE3B0D1-5711-4CB0-BDB0-B49EC0CFE5FA}" ?>
+	<?define ProductUpgradeCode = "{ADEACA02-5371-42DD-8AFA-F803AA940F65}" ?>
+	<?define UninstallShortcutGuid = "{C6D3B099-C38C-4542-87D7-FB53152BA9FF}" ?>
+
+	<?define ProductName = "Wix MyDbName Database Setup" ?>
+	<?define ProductVersion = "1.0.0.0" ?>
+	<?define ProductMinimumVersion = "0.0.0.0" ?>
+	<?define ProgramFileFolderName = "MyDbName Database Setup" ?>
+
+  <!--SQL SOURCE DIRECTORY-->
+	<?define SourceItemsDir = "C:\Development\GitHub\WixDatabaseInstaller\SQLScripts" ?>
+  
+	<?define ManufacturerName = "Icode.net" ?>
+  <?define LicenseRtf = "$(var.ProjectDir)\Lang\en\EULA_en.rtf" ?>
+  <?define HelpFileName = "WixDataBase.Setup.chm" ?>
+
+  <!--path to CUSTOM ACTIONS DLL Library-->
+  <?define SourceCustomAction = "C:\Development\GitHub\WixDatabaseInstaller\Database.CustomAction\bin\Debug\Database.CustomAction.CA.dll" ?>
+
+  <!-- Product name as you want it to appear in Add/Remove Programs-->
+	<?if $(var.Platform) = x64 ?>
+	<?define PlatformProductName = "$(var.ProductName) (64 bit)" ?>
+	<?define Win64 = "yes" ?>
+	<?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+	<?else ?>
+	<?define PlatformProductName = "$(var.ProductName)" ?>
+	<?define Win64 = "no" ?>
+	<?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+	<?endif ?>
+
+	<!--Images-->
+  <?define ErrorBmp = "$(var.ProjectDir)Images\Error.bmp" ?>
+  <?define SuccessBmp = "$(var.ProjectDir)Images\Success.bmp" ?>
+</Include>

@@ -1,0 +1,2 @@
+C:\Development\GitHub\WixDatabaseInstaller\Database.Setup\bin\Debug\en-us\Database.msi
+C:\Development\GitHub\WixDatabaseInstaller\Database.Setup\bin\Debug\en-us\Database.wixpdb

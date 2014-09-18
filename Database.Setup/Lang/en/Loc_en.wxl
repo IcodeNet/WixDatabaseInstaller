@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+ 
+/* ==========================================================================
+Links:
+  http://wix.codeplex.com/SourceControl/latest#src/ext/UIExtension/wixlib/
+========================================================================== */
+-->
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization" Codepage="1252">
+	<String Id="LANG" Overridable="yes">1033</String>
+	<String Id="CodePage" Overridable="yes">1252</String>
+	<String Id="LicenseRtf" Overridable="yes">Lang\en\EULA_en.rtf</String>
+	<String Id="ProductDescription" Overridable="yes">Installer database objects</String>
+	<String Id="ProductComments" Overridable="yes">Installer database objects</String>
+	<String Id="KeyWords" Overridable="yes">Installer,MSI,Database</String>
+
+	<!--Location Validation and error-->
+	<String Id="ValidationVersionAlreadyUpdated" Overridable="yes">A version of [ProductName] is already installed</String>
+	<String Id="ValidationVersionNew" Overridable="yes">A new version of [ProductName] is already installed </String>
+	<String Id="ValidationAdministrator" Overridable="yes">The user must have administrator privileges on the machine</String>
+	<String Id="ValidationDotNet" Overridable="yes">This product requires Microsoft Framework 3.0 or higher </String>
+
+	<!--Dialog UILicenseKeyDlg-->
+	<String Id="UILicenseKeyDlg_Title" Overridable="yes">Setup [ProductName]</String>
+	<String Id="UILicenseKeyDlg_UserName" Overridable="yes">User Name</String>
+	<String Id="UILicenseKeyDlg_Organization" Overridable="yes">&amp;Organization</String>
+	<String Id="UILicenseKeyDlg_Key" Overridable="yes">CD &amp;Clave:</String>
+	<String Id="UILicenseKeyDlgNext" Overridable="yes">&amp;Siguiente</String>
+	<String Id="UILicenseKeyDlgBack" Overridable="yes">&amp;Anterior</String>
+	<String Id="UILicenseKeyDlgCancel" Overridable="yes">Cancelar</String>
+	<String Id="UILicenseKeyDlg_Description" Overridable="yes">Please enter your client information</String>
+	<String Id="UILicenseKeyDlgTitle" Overridable="yes">Customer Information</String>
+
+  <!--Dialog UIInvalidPidDlg-->
+  <String Id="UIInvalidPidDlg_Text" Overridable="yes">The user key you entered is invalid. Please, enter the key printed on the label of the box of the installation CD</String>
+
+  <String Id="ExecuteAppToExit" Overridable="yes">Run Application [ProductName] to exit the installer</String>
+  <String Id="Readme" Overridable="yes">Readme</String>
+  <String Id="UninstallName" Overridable="yes">Uninstall</String>
+
+  <!--Dialog UIProgressDlg-->
+  <String Id="UIProgressDlg_ExecutingTask" Overridable="yes"><![CDATA[Executing: [1]]]></String>
+
+	<!--Dialog DatabaseServerDlg-->
+	<String Id="DatabaseServerDlg_Header" Overridable="yes">Connection to Database Services</String>
+	<String Id="DatabaseServerDlg_Title" Overridable="yes">Connection to Database Services</String>
+	<String Id="DatabaseServerDlg_Description" Overridable="yes">Authentication Information</String>
+	<String Id="DatabaseServerDlg_WinAuthentication" Overridable="yes">Windows Authentication</String>
+	<String Id="DatabaseServerDlg_SqlAuthentication" Overridable="yes">SQL Server Authentication</String>
+	<String Id="DatabaseServerDlg_ServerLabel" Overridable="yes">Server Name:</String>
+  <String Id="DatabaseServerDlg_AuthenticationLabel" Overridable="yes">Connection to Server:</String>
+  <String Id="DatabaseServerDlg_UserLabel" Overridable="yes">User Name:</String>
+  <String Id="DatabaseServerDlg_PasswordLabel" Overridable="yes">Password:</String>
+  <String Id="DatabaseServerDlg_Test" Overridable="yes">&amp;Test Connection</String>
+  <String Id="DatabaseServerDlg_DatabaseLabel" Overridable="yes">Database name:</String>
+  <String Id="DatabaseServerDlg_ExecuteScripts" Overridable="yes">Execute database scripts</String>
+  <String Id="DatabaseServerDlg_IncludeDatabaInAuthentication" Overridable="yes">Include Database in Authentication</String>
+  <String Id="DatabaseServerDlg_AuthenticationErrorMessage" Overridable="yes">Authentication Error</String>
+  <String Id="DatabaseServerDlg_ServerRequired" Overridable="yes">Server name is required</String>
+  <String Id="DatabaseServerDlg_DataBaseRequired" Overridable="yes">Database name is required</String>
+  <String Id="DatabaseServerDlg_UserPasswordRequired" Overridable="yes">User name and Password is required</String>
+
+  <!--Dialog DatabaseSQLAgentDlg-->
+  <String Id="DatabaseSQLAgentDlg_Header" Overridable="yes">Configuration SQL Server Agent</String>
+  <String Id="DatabaseSQLAgentDlg_Title" Overridable="yes">Configuration SQL Server Agent</String>
+  <String Id="DatabaseSQLAgentDlg_Description" Overridable="yes">Enter Configuration information</String>
+  <String Id="DatabaseSQLAgentDlg_MailConfigLabel" Overridable="yes">Email Configuration </String>
+  <String Id="DatabaseSQLAgentDlg_MailProfileLabel" Overridable="yes">Email profile name</String>
+  <String Id="DatabaseSQLAgentDlg_MailBoxLabel" Overridable="yes">Mail Account </String>
+  <String Id="DatabaseSQLAgentDlg_MailIPLabel" Overridable="yes">IP mail server (#.#.#.#)</String>
+  <String Id="DatabaseSQLAgentDlg_OperatorConfigLabel" Overridable="yes"> SQL Server Operator</String>
+  <String Id="DatabaseSQLAgentDlg_OperatorNameLabel" Overridable="yes">Operator Name</String>
+
+  <!--Dialog DatabaseProxyDlg-->
+  <String Id="DatabaseProxyDlg_Header" Overridable="yes">Proxy server database</String>
+  <String Id="DatabaseProxyDlg_Title" Overridable="yes">Proxy server database</String>
+  <String Id="DatabaseProxyDlg_Description" Overridable="yes">Enter proxy account information</String>
+  <String Id="DatabaseProxyDlg_ProxyConfigLabel" Overridable="yes"> Proxy Account - Security</String>
+  <String Id="DatabaseProxyDlg_ProxyWindowsUserLabel" Overridable="yes"> Windows User (CLIENT\User)</String>
+  <String Id="DatabaseProxyDlg_ProxyPasswordLabel" Overridable="yes">Password </String>
+  <String Id="DatabaseProxyDlg_ProxyPasswordConfirmLabel" Overridable="yes">Confirm Password </String>
+
+  <!--UI-->
+  <String Id="Return" Overridable="yes">&amp;Back</String>
+  <String Id="ErrorValidation" Overridable="yes">Error validating one of the fields</String>
+
+  <!--Paths install database-->
+  <String Id="Database_Path_Primary" Overridable="yes">Database master data file path *.mdf</String>
+  <String Id="Database_Path_Log" Overridable="yes">Database Transaction log path *.ldf</String>
+</WixLocalization>

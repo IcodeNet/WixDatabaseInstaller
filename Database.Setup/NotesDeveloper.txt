@@ -1,0 +1,85 @@
+﻿BUGS
+
+ICE Errors and Resolutions
+http://www.appdeploy.com/tips/detail.asp?id=145
+
+BUG 1:
+ICE20 : Standard Dialog : ' FilesInUse ' not found in Dialog table
+http://community.flexerasoftware.com/archive/index.php?t-19579.html
+The Files In use validation errors can be ignored in standard projects Along with all of the other ICE20 errors .
+ICE 20 does not apply When you not have an external UI ... like standard projects .
+You Just have to run ICE validation manually , like through Orca
+
+Ownership: ErrorDialog
+ICE20 : Property ErrorDialog not specified in Property table . Required property for Determining the name of your ErrorDialog
+
+Adds the following to the product to be installed
+< Product Id = "$ ( var.ProductId ) "
+  <UI>
+    <Property Id="ErrorDialog" Value="UI2ErrorDlg" />
+  < / UI >
+< / Product>
+
+BUG 2:
+Localization Variable ; Bug and workaround
+http://sourceforge.net/mailarchive/forum.php?set=custom&viewmonth=200612&viewday=&forum_name=wix-users&style=nested&max_rows=100&submit=Change+View
+
+Scenario 1:
+Add file with the keys for culture en- us , using the Wix sources.
+It worked and it was not necessary to establish the culture in the project properties .
+
+Scenario 2:
+I tried to set " Cultures " in the project property dialog to " en- US".
+However , when saving the changes , the property Cultures Was not persisted to the. Wixproj file .
+
+The workaround :
+1) Right - click the project node and select "Unload Project"
+2) Right - click the project node again ( now marked Unavailable) and select "Edit YourProjectName.wixproj "
+3) In the first property group , Add the following node:
+    <Cultures> En-US < / Cultures >
+4) Save the file , close it
+5 ) Right- click the project node and select "Reload Project"
+
+BUG 3:
+Failed to create custom dialog MsiRMFilesInUse
+http://windows-installer-xml-wix-toolset.687559.n2.nabble.com/modifying-a-dialog-td5864441.html
+
+Custom dialog : MsiRMFilesInUse modify property name : WixUIRMOption
+New name of dialogue : UI2MsiRMFilesInUseDlg , New property name : WixUIRMOption2
+
+Modify restarmager :
+<Publish Event="RMShutdownAndRestart" Value="0"> WixUIRMOption2 ~ = " userm " < / Publish >
+
+<Publish Event="RMShutdownAndRestart" Value="0"> WixUIRMOption ~ = " userm " < / Publish >
+
+
+The InstallExecutionSquence table has the following default actions :
+
+ValidateProductID 700
+CostInitialize 800
+FileCost 900
+CostFinalize 1000
+InstallValidate 1400
+InstallInitialize 1500
+ProcessComponents 1600
+UnpublishComponents 1700
+MsiUnpublishAssemblies 1750
+UnpublishFeatures 1800
+RemoveShortcuts 3200
+RemoveFiles 3500
+InstallFiles 4000
+CreateShortcuts 4500
+RegisterUser 6000
+RegisterProduct 6100
+MsiPublishAssemblies 6250
+PublishFeatures 6300
+PublishProduct 6400
+InstallFinalize 6600
+
+
+Conditions in installation sequence
+$ Y & perform the same task , only $ & is for components and characteristics for
+Returning state component / feature to be installed or uninstalled.
+
+? y! perform the same task , only ? component and it is ! for characteristics
+Return the component status / fuer feature already installed or not installed.

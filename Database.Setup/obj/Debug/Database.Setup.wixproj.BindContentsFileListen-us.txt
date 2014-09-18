@@ -1,0 +1,5 @@
+C:\Development\GitHub\WixDatabaseInstaller\Database.Setup\\Resources\Readme.txt
+C:\Development\GitHub\WixDatabaseInstaller\SQLScripts\src\Create\Tables\001.dbo.Test.Table.sql
+C:\Development\GitHub\WixDatabaseInstaller\SQLScripts\0a.KillLoginSessions.sql
+C:\Development\GitHub\WixDatabaseInstaller\SQLScripts\0.CreateDatabase.sql
+C:\Development\GitHub\WixDatabaseInstaller\SQLScripts\src\000.CreateDatabaseVersion.sql

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.5</ProductVersion>
+    <ProjectGuid>{a04f5ebf-cdb8-47bb-81f1-c2d30d3298eb}</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>Database</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <Name>Database.Setup</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+    <SuppressIces>ICE20</SuppressIces>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Dialogs\DatabaseServerDlg.wxs" />
+    <Compile Include="Dialogs\GenericErrorDlg.wxs" />
+    <Compile Include="Dialogs\UIInvalidPidDlg.wxs" />
+    <Compile Include="Dialogs\UILicenseKeyDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\Common2.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2AdvancedWelcomeEulaDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2BrowseDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2CancelDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2CustomizeDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2DiskCostDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2ErrorDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2ExitDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2FatalErrorDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2FeaturesDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2FilesInUseDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2InstallDirDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2InstallScopeDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2InvalidDirDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2LicenseAgreementDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2MaintenanceTypeDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2MaintenanceWelcomeDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2MsiRMFilesInUseDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2OutOfDiskDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2OutOfRbDiskDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2PrepareDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2ProgressDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2ResumeDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2SetupTypeDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2UserExitDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2VerifyReadyDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2WaitForCostingDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2WelcomeDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI2WelcomeEulaDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\UI3LauntExitDlg.wxs" />
+    <Compile Include="Dialogs\WixDialogs\WixUI2_Advanced.wxs" />
+    <Compile Include="Dialogs\WixDialogs\WixUI2_FeatureTree.wxs" />
+    <Compile Include="Dialogs\WixDialogs\WixUI2_InstallDir.wxs" />
+    <Compile Include="Dialogs\WixDialogs\WixUI2_Minimal.wxs" />
+    <Compile Include="Dialogs\WixDialogs\WixUI2_Mondo.wxs" />
+    <Compile Include="Dialogs\WixDialogs\WixUI3_Mondo.wxs" />
+    <Compile Include="Includes\Components.wxs" />
+    <Compile Include="Includes\Conditions.wxs" />
+    <Compile Include="Includes\Config.wxs" />
+    <Compile Include="Includes\CustomAction.wxs" />
+    <Compile Include="Product.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Bats\" />
+    <Folder Include="Dialogs\" />
+    <Folder Include="Dialogs\WixDialogs\" />
+    <Folder Include="Images" />
+    <Folder Include="Includes\" />
+    <Folder Include="Lang\" />
+    <Folder Include="Lang\en\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Bats\ReadMe.txt" />
+    <Content Include="Bats\Wix_Components.bat" />
+    <Content Include="Images\Action.ico" />
+    <Content Include="Images\Application.ico" />
+    <Content Include="Images\BannerBmp.bmp" />
+    <Content Include="Images\Complete.ico" />
+    <Content Include="Images\Custom.ico" />
+    <Content Include="Images\db.ico" />
+    <Content Include="Images\dbs.ico" />
+    <Content Include="Images\DialogBmp.bmp" />
+    <Content Include="Images\DiskSpace.ico" />
+    <Content Include="Images\Error.bmp" />
+    <Content Include="Images\Error.ico" />
+    <Content Include="Images\Exclamation.ico" />
+    <Content Include="Images\Help.ico" />
+    <Content Include="Images\Info.ico" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Images\Msi.ico" />
+    <Content Include="Images\New.ico" />
+    <Content Include="Images\No.ico" />
+    <Content Include="Images\Remove.ico" />
+    <Content Include="Images\Repair.ico" />
+    <Content Include="Images\search4files.ico" />
+    <Content Include="Images\Settings.ico" />
+    <Content Include="Images\Success.bmp" />
+    <Content Include="Images\Success.ico" />
+    <Content Include="Images\Typical.ico" />
+    <Content Include="Images\Up.ico" />
+    <Content Include="Images\user.ico" />
+    <Content Include="Images\Users.ico" />
+    <Content Include="Images\Wizard.bmp" />
+    <Content Include="Includes\Variables.wxi" />
+    <Content Include="Install.bat" />
+    <Content Include="Lang\en\EULA_en.rtf" />
+    <Content Include="NotesDeveloper.txt" />
+    <Content Include="Resources\Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Lang\en\Loc_en.wxl" />
+    <EmbeddedResource Include="Lang\en\Loc_Features_en.wxl" />
+    <EmbeddedResource Include="Lang\en\Loc_WixExt_en.wxl" />
+    <EmbeddedResource Include="Lang\en\Loc_WixUI_en.wxl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
+      <Name>WixNetFxExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

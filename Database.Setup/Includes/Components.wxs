@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+ 
+ /* ==========================================================================
+Links:
+  Create file components: http://wix.tramontana.co.hu/tutorial/com-expression-syntax-miscellanea/components-of-a-different-color
+  Create directory without installing files : http://wix.tramontana.co.hu/tutorial/com-expression-syntax-miscellanea/creating-directories
+========================================================================== */
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(var.ProjectDir)\Includes\Variables.wxi ?>
+
+  <Fragment Id="ComponentsFragment">
+    <!--Directory tree-->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.PlatformProgramFilesFolder)">
+        <Directory Id="INSTALLLOCATION" Name="$(var.ProgramFileFolderName)">
+          <Directory Id="D_SQLScripts" Name="SQLScripts">
+            <Directory Id="D_src" Name="src">
+              <Directory Id="D_Create" Name="Create">
+                <Directory Id="D_Tables" Name="Tables" />
+                <Directory Id="D_Triggers" Name="Triggers" />
+                <Directory Id="D_Schemas" Name="Schemas" />
+                <Directory Id="D_Services" Name="Services" />
+                <Directory Id="D_Procedures" Name="Procedures" />
+                <Directory Id="D_Views" Name="Views" />
+                <Directory Id="D_Jobs" Name="Jobs" />
+                <Directory Id="D_Functions" Name="Functions" />
+                <Directory Id="D_Data" Name="Data" />
+                <Directory Id="D_Constraints" Name="Constraints" />
+                <Directory Id="D_CodeGen" Name="CodeGen" />
+              </Directory>
+              <!-- <Directory Id="D_Migrate" Name="Migrate" >                
+                    <Directory Id="D_CodeGen" Name="CodeGen" />   
+                       migrate-01.00-01.01.sql 
+                       migrate-01.01-01.02.sql
+                        
+                        the above files represent a migration to a higher version on the database.
+                       
+                </Directory>-->
+            </Directory>
+            <Directory Id="D_Migrations" Name="Migrations">
+            </Directory>
+
+          </Directory>
+        </Directory>
+        <Directory Id="ProgramMenuFolder">
+          <Directory Id="D_AppShortcut" Name="$(var.ProgramFileFolderName)" />
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <!--ShortCuts-->
+    <DirectoryRef Id="D_AppShortcut">
+      <Component Id="CMP_Shortcut" Guid="{51A15AE9-2304-4408-AFF8-E4005099D1E0}">
+        <Shortcut Id="SC_ReadmeTXT" Name="!(loc.Readme)" Description="!(loc.Readme) $(var.ProductName)"
+                  Target="[INSTALLLOCATION]Readme.txt"
+                  Icon="Icon_Application" />
+        <Shortcut Id="SC_Uninstall" Name="!(loc.UninstallName)" Description="!(loc.UninstallName)"
+                  Target="[System64Folder]msiexec.exe"
+                  Arguments="/x [ProductCode]" />
+        <RemoveFolder Id="RemoveAppShortcut" On="uninstall" />
+        <RegistryValue Root="HKCU"
+                       Key="SOFTWARE\[Manufacturer]\[ProductName]"
+                       Name="installed"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <!--Components-->
+    <ComponentGroup Id="CG_Wix.DBScript">
+
+      <Component Id="CMP_ReadmeTXT" Directory="INSTALLLOCATION" Guid="{D7C02418-130F-4179-85D6-78539CB2528D}">
+        <File Id="F_ReadmeTXT" KeyPath="yes" Source="$(var.ProjectDir)\Resources\Readme.txt" />
+      </Component>
+
+      <Component Id="CMP_Registry_INSTALLLOCATION" Directory="D_SQLScripts"
+                 Guid="{E6C57EF8-8AB5-4D42-9F2F-E33726852909}">
+        <RegistryValue Id="RV_InstallLocation"
+                       KeyPath="yes"
+                       Action="write"
+                       Root="HKLM"
+                       Key="SOFTWARE\[Manufacturer]\[ProductName]"
+                       Name="INSTALLLOCATION"
+                       Value="[INSTALLLOCATION]"
+                       Type="string" />
+      </Component>
+
+      <Component Id="CMP_Registry_DATABASE" Directory="D_SQLScripts" Guid="F402654A-AAAF-48ab-9C07-F7FEF09CAEFB">
+        <RegistryKey Id="RK_DATABASE" Root="HKLM" Key="SOFTWARE\[Manufacturer]\[ProductName]"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Id="RV_DATABASE_SERVERNAME"
+                         Name="DATABASE_SERVERNAME"
+                         Value="[DATABASE_SERVERNAME]"
+                         Type="string" />
+
+          <RegistryValue Id="RV_DATABASE_NAME"
+                         Name="DATABASE_NAME"
+                         Value="[DATABASE_NAME]"
+                         Type="string" />
+
+          <RegistryValue Id="RV_DATABASE_USERNAME"
+                         Name="DATABASE_USERNAME"
+                         Value="[DATABASE_USERNAME]"
+                         Type="string" />
+
+          <RegistryValue Id="RV_DATABASE_AUTHENTICATEDATABASE"
+                         Name="DATABASE_AUTHENTICATEDATABASE"
+                         Value="[DATABASE_AUTHENTICATEDATABASE]"
+                         Type="string" />
+
+          <RegistryValue Id="RV_DATABASE_EXECUTESCRIPTS"
+                         Name="DATABASE_EXECUTESCRIPTS"
+                         Value="[DATABASE_EXECUTESCRIPTS]"
+                         Type="string" />
+
+          <RegistryValue Id="RV_DATABASE_MAILPROFILENAME"
+                         Name="DATABASE_MAILPROFILENAME"
+                         Value="[DATABASE_MAILPROFILENAME]"
+                         Type="string" />
+
+          <RegistryValue Id="RV_DATABASE_MAILBOX"
+                         Name="DATABASE_MAILBOX"
+                         Value="[DATABASE_MAILBOX]"
+                         Type="string" />
+
+          <RegistryValue Id="RV_DATABASE_MAILIP"
+                         Name="DATABASE_MAILIP"
+                         Value="[DATABASE_MAILIP]"
+                         Type="string" />
+
+          <RegistryValue Id="RV_DATABASE_OPERATORMAILBOX"
+                         Name="DATABASE_OPERATORMAILBOX"
+                         Value="[DATABASE_OPERATORMAILBOX]"
+                         Type="string" />
+
+          <RegistryValue Id="RV_DATABASE_PROXYWINDOWSUSER"
+                         Name="DATABASE_PROXYWINDOWSUSER"
+                         Value="[DATABASE_PROXYWINDOWSUSER]"
+                         Type="string" />
+        </RegistryKey>
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="CG_General">
+      <Component Id="cmpC27F8FCB3A833766E3D99E15703AB71F" Directory="D_SQLScripts"
+                 Guid="{24A6124A-AC4B-4ACB-A418-7A52F341A5B3}">
+        <File Id="filB75B0E4F7222C61B5E17C2BB18463608" KeyPath="yes"
+              Source="$(var.SourceItemsDir)\0.CreateDatabase.sql" />
+      </Component>
+   
+      <Component Id="cmpA26965F8CAB9C0809C1C27589C61BDF6" Directory="D_SQLScripts"
+                 Guid="{A7FE096F-44C7-4ECE-84AE-C3602B577957}">
+        <File Id="fil6E36D8343945DEC2F0AEC53DBF29625A" KeyPath="yes"
+              Source="$(var.SourceItemsDir)\0a.KillLoginSessions.sql" />
+      </Component>
+    
+      <Component Id="cmp2FE0F3E441CC44F1115668A54CD98EDE" Directory="D_src"
+                 Guid="{50B04FCC-09B8-4644-8365-4AEFE9420042}">
+        <File Id="filF1950CC58089009DD3E7F84B1127CC8C" KeyPath="yes"
+              Source="$(var.SourceItemsDir)\src\000.CreateDatabaseVersion.sql" />
+      </Component>
+      <Component Id="cmpE0E058B0FDBCB89B7FE593DD881F2496" Directory="D_Tables"
+                 Guid="{91122C55-6EB3-474B-88B1-FB212D108A35}">
+        <File Id="fil0A492EB6CF6A79CB1B1A888E1073404E" KeyPath="yes"
+              Source="$(var.SourceItemsDir)\src\Create\Tables\001.dbo.Test.Table.sql" />
+      </Component>
+    </ComponentGroup>
+
+
+    <!-- Features -->
+    <FeatureGroup Id="FG_Main">
+      <Feature Id="F_Wix.DBScript"
+               Title="!(loc.F_Wix.DBScript.Title)"
+               Level="1"
+               Description="!(loc.F_Wix.DBScript.Description)"
+               ConfigurableDirectory="INSTALLLOCATION"
+               AllowAdvertise="no"
+               Display="expand"
+               Absent="disallow">
+        <ComponentRef Id="CMP_Shortcut" />
+        <ComponentGroupRef Id="CG_Wix.DBScript" />
+
+        <!--START Database Initialisation SCRIPTS-->
+        <Feature Id="F_A01Wix.CreateDB"
+                 Title="!(loc.F_A01Wix.CreateDB.Title)"
+                 Level="1"
+                 Description="!(loc.F_A01Wix.CreateDB.Description)"
+                 ConfigurableDirectory="INSTALLLOCATION"
+                 AllowAdvertise="no">
+
+          <ComponentGroupRef Id="CG_General" />
+        </Feature>
+        <!-- END -Database Initialisation SCRIPTS -->
+
+        <!--START Database Migration Scripts SCRIPTS-->
+        <Feature Id="F_Migrate"
+                 Title="!(loc.F_Migrate.Title)"
+                 Level="2"
+                 Description="!(loc.F_Migrate.Description)"
+                 ConfigurableDirectory="INSTALLLOCATION"
+                 AllowAdvertise="no">
+        </Feature>
+        <!-- END -Database Migration SCRIPTS -->
+
+
+        <!--START Upload Test Data SCRIPTS-->
+        <Feature Id="F_UploadTestDataToDatabase"
+                 Title="!(loc.F_Data.Title)"
+                 Level="2"
+                 Description="!(loc.F_Data.Description)"
+                 ConfigurableDirectory="INSTALLLOCATION"
+                 AllowAdvertise="no">
+
+        </Feature>
+        <!-- END -Upload Test DataSCRIPTS -->
+
+      </Feature>
+    </FeatureGroup>
+  </Fragment>
+</Wix>

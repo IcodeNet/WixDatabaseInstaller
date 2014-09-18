@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+/* ==========================================================================
+Links:
+  Variables: http://wix.tramontana.co.hu/tutorial/com-expression-syntax-miscellanea/formatted-strings
+  Variables Wix: http://wix.tramontana.co.hu/tutorial/user-interface/ui-wizardry
+========================================================================== */
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!-- To use a block Fragment objects referencing at least one of its elements, eg: <PropertyRef Id="MyProperty" />-->
+
+  <?include $(var.ProjectDir)\Includes\Variables.wxi ?>
+
+  <Fragment>
+    <!-- Icons can be directly referenced in Product.wxs-->
+    <Icon Id="Icon_Application" SourceFile="$(var.ProjectDir)\Images\Application.ico" />
+
+    <!-- .NET Framewok version check -->
+    <PropertyRef Id="NETFRAMEWORK30" />
+    <PropertyRef Id="NETFRAMEWORK35" />
+    <PropertyRef Id="NETFRAMEWORK40CLIENT" />
+    <PropertyRef Id="NETFRAMEWORK40FULL" />
+
+    <!--Property override-->
+    <Property Id="ARPPRODUCTICON" Value="Icon_Application" />
+    <Property Id="ARPCOMMENTS" Value="(c) $(var.ManufacturerName)" />
+    <Property Id="ARPHELPLINK" Value="http://www.barclays.com/" />
+    <Property Id="ARPURLINFOABOUT">http://www.barclays.com/</Property>
+    <Property Id="ARPCONTACT">Byron (Vyron) Thanopoulos(byronth@gmail.com)</Property>
+    <!--<Property Id="ALLUSERS" Value="1" />-->
+
+    <!--Level features to be installed -->
+    <Property Id="INSTALLLEVEL">3</Property>
+
+    <!-- Property installation  location -->
+    <Property Id="INSTALLLOCATION" Secure="yes">
+      <RegistrySearch Id="RS_InstallLocation"
+            Type="raw"
+            Root="HKLM"
+            Win64="$(var.Win64)"
+            Key="SOFTWARE\[Manufacturer]\[ProductName]"
+            Name="INSTALLLOCATION">
+      </RegistrySearch>
+    </Property>
+
+    <!-- Product key used in the dialogue : UILicenseKeyDlg . Hidden , not to be presented in the log -->
+    <Property Id="PIDKEY" Hidden='yes' />
+    <!-- Template for MaskedEdit control used to prompt the user for a product key -->
+    <Property Id="PIDTemplate"><![CDATA[12345<####-####-####-####>@@@@@]]></Property>
+
+    <!-- Connection to Database Services -->
+    <Property Id="DATABASE_SERVERNAME" Secure="yes">
+      <RegistrySearch Id="RS_DATABASE_SERVERNAME" 
+                      Type="raw"
+                      Root="HKLM"
+                      Win64="$(var.Win64)"
+                      Key="SOFTWARE\[Manufacturer]\[ProductName]"
+                      Name="DATABASE_SERVERNAME" />
+    </Property>
+
+	  <Property Id="DATABASE_NAME" Secure="yes">
+		  <RegistrySearch Id="RS_DATABASE_NAME"
+						  Type="raw"
+						  Root="HKLM"
+						  Win64="$(var.Win64)"
+						  Key="SOFTWARE\[Manufacturer]\[ProductName]"
+						  Name="DATABASE_NAME" />
+	  </Property>
+
+	  <!-- You can not use RegistrySearch to avoid ICE34 Error on radio buttons -->
+	  <Property Id="DATABASE_WINDOWSAUTHENTICATION" Secure="yes" Value="1"/>
+
+	  <!-- Do not add the element Value = " 0 " so that the checkbox is unchecked -->
+	  <Property Id="DATABASE_AUTHENTICATEDATABASE" Secure="yes"/>
+	  <Property Id="DATABASE_EXECUTESCRIPTS" Secure="yes" Value="1" />
+    <Property Id="DATABASE_AUTHENTICATIONREQUIRED" Secure="yes" Value="0" />
+
+    <Property Id="DATABASE_USERNAME" Secure="yes">
+		  <RegistrySearch Id="RS_DATABASE_USERNAME"
+						  Type="raw"
+						  Root="HKLM"
+						  Win64="$(var.Win64)"
+						  Key="SOFTWARE\[Manufacturer]\[ProductName]"
+						  Name="DATABASE_USERNAME" />
+	  </Property>
+
+	  <!-- User Password , the Hidden = "yes " attribute prevents the property from being written in the installer log   -->
+	  <Property Id="DATABASE_PASSWORD" Hidden="yes" Secure="yes"/>
+    <Property Id="DATABASE_PROXYPASSWORD" Hidden="yes" Secure="yes"/>
+    <Property Id="DATABASE_PROXYPASSWORDCONFIRM" Hidden="yes" Secure="yes"/>
+
+    <Property Id="DATABASE_MAILPROFILENAME" Secure="yes">
+		  <RegistrySearch Id="RS_DATABASE_MAILPROFILENAME"
+						  Type="raw"
+						  Root="HKLM"
+						  Win64="$(var.Win64)"
+						  Key="SOFTWARE\[Manufacturer]\[ProductName]"
+						  Name="DATABASE_MAILPROFILENAME" />
+	  </Property>
+    
+    <Property Id="DATABASE_MAILBOX" Secure="yes">
+		  <RegistrySearch Id="RS_DATABASE_MAILBOX"
+						  Type="raw"
+						  Root="HKLM"
+						  Win64="$(var.Win64)"
+						  Key="SOFTWARE\[Manufacturer]\[ProductName]"
+						  Name="DATABASE_MAILBOX" />
+	  </Property>
+
+    <Property Id="DATABASE_MAILIP" Secure="yes">
+      <RegistrySearch Id="RS_DATABASE_MAILIP"
+						  Type="raw"
+						  Root="HKLM"
+						  Win64="$(var.Win64)"
+						  Key="SOFTWARE\[Manufacturer]\[ProductName]"
+						  Name="DATABASE_MAILIP" />
+    </Property>
+
+    <Property Id="DATABASE_OPERATORNAMENAME" Secure="yes" Value ="OperatorWixDataBase"/>
+
+    <Property Id="DATABASE_OPERATORMAILBOX" Secure="yes">
+      <RegistrySearch Id="RS_DATABASE_OPERATORMAILBOX"
+						  Type="raw"
+						  Root="HKLM"
+						  Win64="$(var.Win64)"
+						  Key="SOFTWARE\[Manufacturer]\[ProductName]"
+						  Name="DATABASE_OPERATORMAILBOX" />
+    </Property>
+
+    <Property Id="DATABASE_PROXYWINDOWSUSER" Secure="yes">
+      <RegistrySearch Id="RS_DATABASE_PROXYWINDOWSUSER"
+						  Type="raw"
+						  Root="HKLM"
+						  Win64="$(var.Win64)"
+						  Key="SOFTWARE\[Manufacturer]\[ProductName]"
+						  Name="DATABASE_PROXYWINDOWSUSER" />
+    </Property>
+
+    <Property Id="DATABASE_VALID_LOGON" Value="0"/>
+    <Property Id="DATABASE_VALID_PROXY" Value="0"/>
+    <Property Id="DATABASE_VALID_SQLAGENT" Value="0"/>
+    <Property Id="DATABASE_TEST_CONNECTION" Value="0"/>
+
+    <!--Table install paths database -->
+    <CustomTable Id="TABLE_DATABASE_PATHS">
+      <Column Id="Name" Type="string" PrimaryKey="yes"/>
+      <Column Id="Description" Type="string"/>
+      <Column Id="Path" Type="string" Nullable="yes"/>
+      
+      <Row>
+        <Data Column="Name">DATABASE_PATH_PRIMARY</Data>
+        <Data Column="Description">!(loc.Database_Path_Primary)</Data>
+        <Data Column="Path"></Data>
+      </Row>
+      <Row>
+        <Data Column="Name">DATABASE_PATH_LOG</Data>
+        <Data Column="Description">!(loc.Database_Path_Log)</Data>
+        <Data Column="Path"></Data>
+      </Row>
+	  </CustomTable>
+    
+    <!-- Ensures the table to appear in the installer even without rows -->
+    <EnsureTable Id="TABLE_DATABASE_PATHS"/>
+    
+    <!-- Message to generic error dialog  -->
+	  <Property Id="ERROR_MESSAGE" Value="Error"/>
+	  <Property Id="ERROR_TITLE" Value="Error"/>
+
+    <!-- Launch app exit after setup -->
+    <Property Id="LaunchApp">1</Property>
+
+    <!--Indicate display license dialog-->
+    <Property Id="ShowUILicenseKeyDlg"><![CDATA[0]]></Property>
+
+    <!--Used in dialog: UI2AdvancedWelcomeEulaDlg-->
+    <Property Id="PROMPTROLLBACKCOST"><![CDATA[P]]></Property>
+
+	  <!-- RIA Services Check -->
+    <Property Id="RIASERVICES">
+      <RegistrySearch Id="RiaServices" 
+                      Type="raw"
+                      Root="HKLM"
+                      Win64="$(var.Win64)"
+                      Name="InstallPath" 
+                      Key="SOFTWARE\Microsoft\WCFRIAServices\v1.0" />
+    </Property>
+
+    <!--Variables Wix-->
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.LicenseRtf)"/>
+
+    <!-- 493 x 312 pixels. Background Image dialog on the banner image and all other controls are mounted-->
+    <WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)\Images\DialogBmp.bmp" />
+    <!-- 493 x 58 pixels. Banner on top of dialogues, top strip with logo at the end  -->
+    <WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)\Images\BannerBmp.bmp" />
+    <!--32 x 32 pixels-->
+    <WixVariable Id="WixUIExclamationIco" Value="$(var.ProjectDir)\Images\Exclamation.ico" />
+    <WixVariable Id="WixUIInfoIco" Value="$(var.ProjectDir)\Images\Info.ico" />
+    <WixVariable Id="WixUINewIco" Value="$(var.ProjectDir)\Images\New.ico" />
+    <WixVariable Id="WixUIUpIco" Value="$(var.ProjectDir)\Images\Up.ico" />
+
+    <!-- Folder installation, used in WixUI_InstallDir -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
+
+    <!-- Used in WixUI_Advanced Properties  -->
+    <Property Id="ApplicationFolderName" Value="$(var.ProgramFileFolderName)" />
+    <Property Id="WixAppFolder" Value="WixPerMachineFolder" />    
+  </Fragment>
+
+  <Fragment>
+    <!--Binary files-->
+    <Binary Id="BIN_CustomAction" SourceFile="$(var.SourceCustomAction)" />
+    <Binary Id="BIN_ErrorBmp" SourceFile="$(var.ErrorBmp)" />
+    <Binary Id="BIN_SuccessBmp" SourceFile="$(var.SuccessBmp)" />
+  </Fragment>
+</Wix>

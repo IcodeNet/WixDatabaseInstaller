@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+
+/* ==========================================================================
+Links:
+Parse character , for example when using logical operators : <![CDATA[IAgree <> "Yes"]]>: http://www.w3schools.com/xml/xml_cdata.asp
+========================================================================== */
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <Property Id="LaunchConditionsFile" Value="1" />
+
+    <!-- Check that we have elevated permissions when installing -->
+    <Condition Message="!(loc.ValidationAdministrator)">Installed OR Privileged</Condition>
+
+    <!--Check .Net Framewok-->
+    <Condition Message="!(loc.ValidationDotNet)">
+      <![CDATA[Installed OR (NETFRAMEWORK30 OR NETFRAMEWORK35 OR NETFRAMEWORK40CLIENT OR NETFRAMEWORK40FULL)]]>
+    </Condition>
+
+    <!-- Detect version -->
+    <Condition Message="!(loc.ValidationVersionNew)"><![CDATA[Installed OR NOT NEWER_VERSION_FOUND]]></Condition>
+
+    <!-- IIS Version 6 or higher check. -->
+    <!--<Condition Message="!(loc.IISVersion)">IISMAJORVERSION &gt;= "#6"</Condition>-->
+
+    <!-- RIA Services Check: Cannot just check key - need value, hence v1.0->InstallPath -->
+    <!--<Condition Message="!(loc.RiaServices)">Installed OR RIASERVICES</Condition>-->
+  </Fragment>
+</Wix>
